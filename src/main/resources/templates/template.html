@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Invoice</title>
+
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+
+	}
+
+	body {
+		font-family: Arial, sans-serif;
+
+	}
+
+
+	.invoice-items {
+		width: 100%;
+		margin-bottom: 20px;
+		border-collapse: collapse;
+	}
+
+	.invoice-items th,
+	.invoice-items td {
+		padding: 10px;
+		border: 1px solid #ddd;
+	}
+
+	.bank-items {
+		width: 100%;
+		margin-bottom: 20px;
+		border-collapse: collapse;
+	}
+
+	.bank-items th,
+	.bank-items td {
+		padding: 10px;
+
+	}
+
+	.bank-items th {
+		background-color: white;
+	}
+
+	.bank-details {
+		margin-top: 20px;
+		padding: 10px;
+		background-color: white;
+		border-radius: 5px;
+	}
+
+
+	strong {
+		font-weight: bold;
+	}
+
+	td {
+		text-align: center;
+	}
+</style>
+
+<body>
+
+	<div class="container" style="height: 80vh;">
+		<div style="display: flex;">
+			<div style="width: 70%;height: 150px;margin-bottom: 15px;">
+				<img src="https://th.bing.com/th/id/OIP.6gwjNpN21DuIKIoff2Y-dgAAAA?w=474&h=233&rs=1&pid=ImgDetMain"
+					style="width: 200px;height: 150px;">
+			</div>
+			<div style="margin-left: 30px;">
+				<h1 style="text-align: center;font-size: 3.5rem;font-weight: bolder;margin-top: 60px;">
+					<strong>Invoice</strong>
+				</h1>
+			</div>
+		</div>
+		<div class="header">
+			<hr style="font-size: large;">
+			<div style="margin: 20px 0 10px;">
+				<p><strong>Project Name:</strong> <span th:text="${invoiceData.projectName}">Project ABC</span></p><br>
+			</div>
+
+		</div>
+		<div class="invoice-details">
+			<div class="details-left" style="display: flex;margin-bottom: 20px;">
+				<div style="display: inline; width: 50%;">
+
+					<p><strong>EPS:</strong> <span th:text="${invoiceData.eps}">EPS-123</span></p>
+					<p><strong>Claim ID:</strong> <span th:text="${invoiceData.claimId}">CLM-456</span></p>
+					<p><strong>Contract ID:</strong> <span th:text="${invoiceData.contractId}">CON-789</span></p>
+					<p><strong>Originator:</strong> <span th:text="${invoiceData.originator}">John Doe</span></p>
+
+				</div>
+				<div>
+					<p><strong>Project Owner:</strong> <span th:text="${invoiceData.projectOwner}">Jane Smith</span></p>
+					<p><strong>Period:</strong> <span th:text="${invoiceData.period}">2024 Q1</span></p>
+					<p><strong>Invoice Date:</strong> <span th:text="${invoiceData.invoiceDate}">March 1, 2024</span>
+					</p>
+					<p><strong>Due of Payment:</strong> <span th:text="${invoiceData.dueOfPayment}">March 15,
+							2024</span>
+				</div>
+				</p>
+			</div>
+			<div class="details-right" style="margin-bottom: 40px;">
+				<p><strong>Profit Center:</strong> <span th:text="${invoiceData.profitCenter}">Profit Center XYZ</span>
+				</p>
+			</div>
+
+		</div>
+
+		<table class="invoice-items" style="margin-bottom: 50px;">
+			<thead>
+				<tr>
+					<th style="width: 100px;">Item Number</th>
+					<th>Item</th>
+					<th>Currency</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item, itemStat : ${invoiceData.invoiceItems}">
+					<td style="text-align: center;" th:text="${itemStat.index + 1}">111</td>
+					<td th:text="${item.itemName}">1111</td>
+					<td th:text="${item.currency}">1111</td>
+					<td th:text="${item.amount}">11</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr>
+
+	</div>
+	<div class="bank-details">
+		<h2 style="font-size: 1.5rem;color: grey;margin-bottom: 20px;">Receiver Bank Details</h2>
+		<!-- Add bank details here -->
+		<table class="bank-items" style="margin-bottom: 50px;;background-color: white;">
+			<thead>
+				<tr>
+					<th>Account Number</th>
+					<th>Account Name</th>
+					<th>Bank Name</th>
+					<th>Bank Code</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>53728346</td>
+					<td>Neelu Chandra</td>
+					<td>SBI</td>
+					<td>SBI12134</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr style="font-size: large;margin:0 0 20px 0">
+</body>
+
+</html>
